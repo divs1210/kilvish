@@ -4,7 +4,6 @@
  * a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  */
 
-
 package com.threecoffee.anim;
 
 import java.awt.Point;
@@ -14,9 +13,8 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import com.threecoffee.control.GameWindow;
-import com.threecoffee.util.Gravity;
-import com.threecoffee.util.Logger;
+import com.kilvish.util.Gravity;
+import com.kilvish.util.Logger;
 
 /**
  * Simple class to represent an image or a simple animation consisting of a group of images.
@@ -41,7 +39,6 @@ public class Sprite extends JLabel implements Runnable, Serializable{
 	Gravity g;
 	Point prev;
 	Sprite other;
-	GameWindow gw;
 	
 	/**
 	 * Creates a new animated sprite with no image
@@ -429,21 +426,5 @@ public class Sprite extends JLabel implements Runnable, Serializable{
 			e.printStackTrace();
 			Logger.log(e);
 		}
-	}
-	
-	/**
-	 * Add this Sprite to the given GameWindow.
-	 */
-	public void addTo(GameWindow gaw) {
-		gw=gaw;
-		gw.getContentPane().add(this);
-	}
-	
-	/**
-	 * Returns the GameWindow that this Sprite
-	 * is attached to.
-	 */
-	public GameWindow getGameWindow(){
-		return gw;
 	}
 }
