@@ -9,7 +9,7 @@ package com.kilvish.util;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import com.threecoffee.anim.Sprite;
+import com.kilvish.core.Sprite;
 
 /**
  * Simple class to enable mouse-dragging a Sprite.

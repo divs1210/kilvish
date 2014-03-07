@@ -2,7 +2,7 @@ package dragon_egg;
 
 import javax.swing.ImageIcon;
 
-import com.threecoffee.anim.Actor;
+import com.kilvish.core.Actor;
 
 class Dragon extends Actor {
 	static final ImageIcon dragon_1=new ImageIcon("media/dragon-egg/dragon/1.jpg"),
@@ -11,6 +11,7 @@ class Dragon extends Actor {
                            dragon_4=new ImageIcon("media/dragon-egg/dragon/4.jpg");
 	
 	public Dragon(){
+		super("dragon");
 	}
 	
 	@Override

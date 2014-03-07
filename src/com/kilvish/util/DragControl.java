@@ -8,7 +8,7 @@ package com.kilvish.util;
 
 import java.awt.MouseInfo;
 
-import com.threecoffee.anim.Sprite;
+import com.kilvish.core.Sprite;
 
 /**
  * Provides a simple interface for dragging a Sprite.

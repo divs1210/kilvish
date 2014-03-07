@@ -1,7 +1,8 @@
 package dragon_egg;
 
-import com.kilvish.control.GameWindow;
-public class Game extends GameWindow {
+import com.kilvish.view.GamePane;
+
+public class Game extends GamePane {
 	
 	public Game(){
 		super(600, 300);

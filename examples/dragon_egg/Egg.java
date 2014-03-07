@@ -1,7 +1,7 @@
 package dragon_egg;
 import javax.swing.ImageIcon;
 
-import com.threecoffee.anim.Sprite;
+import com.kilvish.core.Sprite;
 
 public class Egg extends Sprite {
 
@@ -11,10 +11,7 @@ public class Egg extends Sprite {
 	boolean broken = false;
 	
 	public Egg(){
-	}
-		
-	@Override
-	public void collided(Sprite s) {
+		super("egg");
 	}
 	
 }

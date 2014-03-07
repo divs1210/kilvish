@@ -2,8 +2,7 @@ package dragon_egg;
 
 import javax.swing.ImageIcon;
 
-import com.threecoffee.anim.Actor;
-import com.threecoffee.anim.Animation;
+import com.kilvish.core.Actor;
 
 public class Wagon extends Actor {
 	
@@ -12,12 +11,11 @@ public class Wagon extends Actor {
                            wagon_3=new ImageIcon("media/dragon-egg/wagon/3.PNG"),
                            wagon_4=new ImageIcon("media/dragon-egg/wagon/4.PNG");
 	
-	public Wagon() {
+	public Wagon(){
+		super("wagon");
 	}
 	
 	@Override
 	public void update(){
 	}
-
-	
 }

@@ -4,13 +4,8 @@
  * a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  */
 
-package com.kilvish.util;
-
 /**
- * Simple class to imitate the action of Gravity.
- * 
- * @author Divyansh Prakash
- */
-public class Gravity{
-	
-}
+* Contains classes that are at the core of Kilvish.
+*/
+package com.kilvish.core;
+//nothing here
