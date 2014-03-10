@@ -3,8 +3,8 @@ package com.kilvish.core;
 import javax.swing.ImageIcon;
 
 public class SpriteImage{
-	public ImageIcon img;
-	public int frames;
+	public final ImageIcon img;
+	public final int frames;
 	
 	public SpriteImage(ImageIcon img){
 		this(img, 1);

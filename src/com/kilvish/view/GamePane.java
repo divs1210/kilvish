@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 
 import javax.swing.JPanel;
 
@@ -27,7 +28,9 @@ public class GamePane extends JPanel {
 	
 	private Thread gameThread = new Thread(){
 		public void run(){
+			long t_prev=new Date().getTime(), t_curr;
 			while(true){
+				t_curr = new Date().getTime(); 
 				if(!paused){
 					for(Component c:GamePane.this.getComponents()){
 						if(c instanceof Sprite){
@@ -35,14 +38,17 @@ public class GamePane extends JPanel {
 							s.setIcon(s.getCurrentImage());
 							s.setSize(s.getCurrentImage().getIconWidth(), s.getCurrentImage().getIconHeight());
 							s.repaint();
+							s.update();
 							s.advanceOneFrame();
 						}
 					}
 					repaint();
+					update();
 				}
 				try {
-					sleep(delay);
+					sleep(delay-(t_curr-t_prev));
 				} catch (Exception e) {}
+				t_prev = t_curr;
 			}
 		}
 	};
@@ -60,6 +66,8 @@ public class GamePane extends JPanel {
 		
 		setFocusable(true);
 		addKeyListener(new KA());
+		
+		
 		
 		gameThread.start();
 	}

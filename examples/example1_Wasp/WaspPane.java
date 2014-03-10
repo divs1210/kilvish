@@ -5,7 +5,6 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 import org.imgscalr.Scalr;
 
