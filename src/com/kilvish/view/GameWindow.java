@@ -4,6 +4,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import com.kilvish.media.MediaLoader;
+
 public class GameWindow extends JFrame {
 	
 	public GameWindow(int w, int h){
@@ -13,8 +15,10 @@ public class GameWindow extends JFrame {
 	public GameWindow(GamePane gp){
 		this.setContentPane(gp);
 		this.setSize(gp.getSize());
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
+		this.setIconImage(MediaLoader.getBufferedImage("media/engine/ic.lp"));
 		this.pack();
 		this.setVisible(true);
 	}

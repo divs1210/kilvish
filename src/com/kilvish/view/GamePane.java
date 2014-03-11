@@ -8,21 +8,18 @@ package com.kilvish.view;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
 import java.util.Date;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.imgscalr.Scalr;
-
 import com.kilvish.core.Sprite;
+import com.kilvish.media.ImageControl;
+import com.kilvish.media.MediaLoader;
 
 /**
  * A container to which Sprites can be added to make a game.
@@ -77,23 +74,28 @@ public class GamePane extends JPanel {
 	}
 	
 	private void showSplashScreen() {
+	    int scr_w = getWidth(),
+			scr_h = getHeight();
+		
+	    BufferedImage sp = MediaLoader.getBufferedImage("media/engine/sp.lp");
+		ImageIcon img = new ImageIcon( ImageControl.scaleToFit(sp, scr_w, scr_h) );
+	    
+		int img_w = img.getIconWidth(),
+			img_h = img.getIconHeight();
+		
+	    JLabel splash=new JLabel(img);
+		splash.setSize(img_w, img_h);
+		splash.setLocation((scr_w-img_w)/2, (scr_h-img_h)/2);
+		add(splash);
+		repaint();
+		
 		try {
-			int scr_w = getWidth(),
-			    scr_h = getHeight();
-			
-			Image sp = ImageIO.read(new File("media/engine/sp.lp"));
-			ImageIcon img = new ImageIcon( sp );//Scalr.resize(sp, targetWidth, targetHeight) );
-			
-			int img_w = img.getIconWidth(),
-			    img_h = img.getIconHeight();
-			
-			JLabel splash=new JLabel(img);
-			splash.setSize(img_w, img_h);
-			splash.setLocation((scr_w-img_w)/2, (scr_h-img_h)/2);
-			add(splash);
-			
 			Thread.sleep(2000);
 		} catch (Exception e) {}
+		
+		splash.setVisible(false);
+		remove(splash);
+		repaint();
 	}
 
 	public void pause(boolean state){
