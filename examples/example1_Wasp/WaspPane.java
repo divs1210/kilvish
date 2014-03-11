@@ -1,9 +1,9 @@
 package example1_Wasp;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
+import static com.kilvish.media.MediaLoader.getBufferedImage;
 
-import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+
 import javax.swing.ImageIcon;
 
 import org.imgscalr.Scalr;
@@ -17,12 +17,7 @@ public class WaspPane extends GamePane{
 	WaspPane(){
 		super(150, 150);
 		
-		BufferedImage wasp=null;
-		try {
-			wasp = ImageIO.read(new File("media/wasp/wasp.png"));
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
+		BufferedImage wasp = getBufferedImage("media/wasp/wasp.png");
 		
 		Sprite buzz = new Sprite("wasp");
 		for(int i=0; i<8; i++){
