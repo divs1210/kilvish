@@ -11,27 +11,30 @@ public class Wagon extends Actor {
 	
 	static final ImageIcon img_1=getImageIcon("media/dragon_egg/wagon/1.png"),
                            img_2=getImageIcon("media/dragon_egg/wagon/2.PNG"),
-                           img_3=getImageIcon("media/dragon_egg/wagon/3.PNG"),
-                           img_4=getImageIcon("media/dragon_egg/wagon/4.PNG");
+                           img_3=getImageIcon("media/dragon_egg/wagon/3.PNG");
 	
-	Animation[] anims;
+	Animation[] anims = new Animation[3];
 	
 	int dir = 0;
 	
 	public Wagon(){
 		super("wagon");
 		
-		anims = new Animation[2];
-		
-		anims[0] = new Animation("still");
+		anims[0] = new Animation("idle");
 		anims[0].add(img_1, 1); 
 		this.addAnimation(anims[0]);
 		
-		anims[1] = new Animation("moving");
+		anims[1] = new Animation("move_left");
 		anims[1].add(img_2, 2);
-		anims[1].add(img_4, 2);
+		anims[1].add(img_3, 2);
 		anims[1].add(img_1, 2);
 		this.addAnimation(anims[1]);
+		
+		anims[2] = new Animation("move_right");
+		anims[2].add(img_3, 2);
+		anims[2].add(img_2, 2);
+		anims[2].add(img_1, 2);
+		this.addAnimation(anims[2]);
 
 		this.setCurrentAnimationIndex(0);
 	}

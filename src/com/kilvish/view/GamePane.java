@@ -31,7 +31,7 @@ import com.kilvish.util.MediaLoader;
 public class GamePane extends JPanel {
 	private static boolean[] keys = new boolean[300];
 	private boolean paused=true;
-	private long delay=50;
+	private long delay=0;
 	
 	private Thread gameThread = new Thread(){
 		public void run(){
@@ -66,13 +66,15 @@ public class GamePane extends JPanel {
 	 */
 	public GamePane(int width, int height){
 		super(true);
-		setSize(width, height);
 		
+		setSize(width, height);
 		setLayout(null);
 		setBackground(Color.WHITE);
 		
 		setFocusable(true);
 		addKeyListener(new KA());
+		
+		setFPS(15);
 	}
 	
 	private void showSplashScreen() {

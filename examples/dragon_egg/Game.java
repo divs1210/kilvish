@@ -12,7 +12,6 @@ public class Game extends GamePane {
 	
 	public Game(){
 		super(600, 400);
-		this.setFPS(15);
 		
 		d = new Dragon();
 		this.add(d);
@@ -29,7 +28,7 @@ public class Game extends GamePane {
 			w.setCurrentAnimationIndex(1);
 		}else if(isKeyDown(KeyEvent.VK_RIGHT)){
 			w.dir = 1;
-			w.setCurrentAnimationIndex(1);
+			w.setCurrentAnimationIndex(2);
 		}else{
 			w.dir = 0;
 			w.setCurrentAnimationIndex(0);
