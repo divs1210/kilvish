@@ -1,16 +1,15 @@
 package example1_Wasp;
 
-import javax.swing.JApplet;
+import com.kilvish.view.GameApplet;
 
-public class WaspApplet extends JApplet {
-
-	WaspPane wp;
+public class WaspApplet extends GameApplet {
 	
 	public void init(){
-		wp = new WaspPane();
-		this.setContentPane(wp);
-		this.setSize(wp.getSize());
-		wp.play();
+		setGamePane(new WaspPane());
+	}
+	
+	public void start(){
+		getGamePane().play();
 	}
 	
 }

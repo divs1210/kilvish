@@ -19,7 +19,8 @@ import javax.swing.JPanel;
 
 import com.kilvish.core.Sprite;
 import com.kilvish.media.ImageControl;
-import com.kilvish.media.MediaLoader;
+import com.kilvish.util.Logger;
+import com.kilvish.util.MediaLoader;
 
 /**
  * A container to which Sprites can be added to make a game.
@@ -88,13 +89,12 @@ public class GamePane extends JPanel {
 		splash.setLocation((scr_w-img_w)/2, (scr_h-img_h)/2);
 		add(splash);
 		repaint();
-		
 		try {
 			Thread.sleep(2000);
 		} catch (Exception e) {}
-		
 		splash.setVisible(false);
 		remove(splash);
+		
 		repaint();
 	}
 
@@ -103,9 +103,11 @@ public class GamePane extends JPanel {
 	}
 	
 	public void play(){
-		paused=false;
-		showSplashScreen();
-		gameThread.start();
+		if(!gameThread.isAlive()){
+			paused=false;
+			showSplashScreen();
+			gameThread.start();
+		}else Logger.log(new Exception("Trying to start a started game!"));
 	}
 	
 	public boolean isPaused(){

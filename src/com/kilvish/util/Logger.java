@@ -8,8 +8,10 @@ package com.kilvish.util;
 
 import java.io.BufferedWriter;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * Provides an error-logging facility.
@@ -22,13 +24,24 @@ public class Logger {
 	 * Writes the error details into the util/log.txt file
 	 */
 	public static void log(Exception e){
+		e.printStackTrace();
+		
+		BufferedWriter bw = null;
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter("util/log.txt", true));
+			bw = new BufferedWriter(new FileWriter(".log", true));
 			
 			bw.write(e+"\n");
 			bw.write("\n");
-			bw.close();
-		} catch (IOException e1) {}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		} finally{
+			if(bw!=null)
+				try {
+					bw.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+		}
 	}
 
 }

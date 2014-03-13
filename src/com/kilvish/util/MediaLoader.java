@@ -4,7 +4,7 @@
  * a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
  */
 
-package com.kilvish.media;
+package com.kilvish.util;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
@@ -14,7 +14,6 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import com.kilvish.util.Logger;
 
 /**
  * @author Divyansh Prakash

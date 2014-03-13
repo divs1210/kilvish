@@ -1,6 +1,6 @@
 package example1_Wasp;
 
-import static com.kilvish.media.MediaLoader.getBufferedImage;
+import static com.kilvish.util.MediaLoader.getBufferedImage;
 
 import java.awt.image.BufferedImage;
 
@@ -15,7 +15,7 @@ import com.kilvish.view.GameWindow;
 public class WaspPane extends GamePane{
 
 	WaspPane(){
-		super(150, 150);
+		super(600, 400);
 		
 		BufferedImage wasp = getBufferedImage("media/wasp/wasp.png");
 		
@@ -29,7 +29,7 @@ public class WaspPane extends GamePane{
 	
 	public static void main(String[] args){
 		WaspPane wp = new WaspPane();
-		GameWindow gw = new GameWindow(wp);
+		new GameWindow(wp);
 		wp.play();
 	}
 	
