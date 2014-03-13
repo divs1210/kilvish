@@ -17,15 +17,15 @@ import javax.swing.JLabel;
  * @author Divyansh Prakash
  */
 public class Sprite extends JLabel{
-	int curr,
-	    framesPassed;
+	private int currImg,
+	            framesPassed;
 	
 	String name;
 	
 	ArrayList<SpriteImage> simgs;
 	
 	public Sprite(String name){
-		curr=0;
+		currImg=0;
 		framesPassed=0;
 		
 		this.name = name;
@@ -38,7 +38,7 @@ public class Sprite extends JLabel{
 	
 	public void addSpriteImage(SpriteImage simg){
 		simgs.add(simg);
-		if(curr==0)
+		if(currImg==0)
 			this.setIcon(simg.img);
 	}
 	
@@ -47,15 +47,17 @@ public class Sprite extends JLabel{
 	}
 	
 	public void setCurrentIndex(int i){
-		this.curr = i;
+		this.currImg = i;
 	}
 	
 	public int getCurrentIndex(){
-		return curr;
+		if(currImg>=simgs.size())
+			currImg = 0;
+		return currImg;
 	}
 	
 	public ImageIcon getCurrentImage(){
-		return simgs.get(curr).img;
+		return simgs.get(getCurrentIndex()).img;
 	}
 	
 	public ArrayList<SpriteImage> getSpriteImages(){
@@ -67,10 +69,10 @@ public class Sprite extends JLabel{
 	}
 	
 	public void advanceOneFrame(){
-		SpriteImage si = simgs.get(curr);
-		if(framesPassed==si.frames){
+		SpriteImage si = simgs.get(this.getCurrentIndex());
+		if(framesPassed>=si.frames){
 			framesPassed=0;
-			curr=(curr+1)%simgs.size();
+			currImg=(currImg+1)%simgs.size();
 		}else{
 			framesPassed++;
 		}

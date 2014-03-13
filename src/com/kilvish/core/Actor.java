@@ -46,14 +46,17 @@ public class Actor extends Sprite {
 	 * Sets the current animation being played by this Actor
 	 */
 	public void setCurrentAnimationIndex(int i){
-		this.getSpriteImages().removeAll(this.getSpriteImages());
-		for(SpriteImage simg:anims.get(i))
-			this.addSpriteImage(simg);
-		this.setCurrentIndex(0);
-		curr = i;
+		if(i<anims.size()){
+			this.getSpriteImages().removeAll(this.getSpriteImages());
+			for(SpriteImage simg:getCurrentAnimation())
+				this.addSpriteImage(simg);
+			curr = i;
+		}
 	}
 	
 	public int getCurrentAnimationIndex(){
+		if(curr>=anims.size())
+			curr=0;
 		return curr;
 	}
 	
@@ -61,6 +64,10 @@ public class Actor extends Sprite {
 	 * Returns the animation being played by this Actor
 	 */
 	public Animation getCurrentAnimation(){
-		return anims.get(curr);
+		return anims.get(this.getCurrentAnimationIndex());
+	}
+	
+	public boolean equals(String name){
+		return name.equals(this.getName());
 	}
 }

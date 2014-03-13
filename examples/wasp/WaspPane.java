@@ -1,4 +1,4 @@
-package example1_Wasp;
+package wasp;
 
 import static com.kilvish.util.MediaLoader.getBufferedImage;
 

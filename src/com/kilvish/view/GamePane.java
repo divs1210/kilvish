@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.kilvish.core.Actor;
 import com.kilvish.core.Sprite;
 import com.kilvish.media.ImageControl;
 import com.kilvish.util.Logger;
@@ -36,7 +37,7 @@ public class GamePane extends JPanel {
 		public void run(){
 			long t_prev=new Date().getTime(), t_curr;
 			while(true){
-				t_curr = new Date().getTime(); 
+				t_curr = new Date().getTime();
 				if(!paused){
 					for(Component c:GamePane.this.getComponents()){
 						if(c instanceof Sprite){
