@@ -74,7 +74,7 @@ public class GamePane extends JPanel {
 		setFocusable(true);
 		addKeyListener(new KA());
 		
-		setFPS(15);
+		setFPS(60);
 	}
 	
 	private void showSplashScreen() {

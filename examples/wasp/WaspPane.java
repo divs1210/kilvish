@@ -22,7 +22,7 @@ public class WaspPane extends GamePane{
 		Sprite buzz = new Sprite("wasp");
 		for(int i=0; i<8; i++){
 			ImageIcon img = new ImageIcon( Scalr.crop(wasp, 100*i, 0, 100, 100) );
-			buzz.addImage(img, 1);
+			buzz.addImage(img, 10);
 		}
 		this.add(buzz);
 	}

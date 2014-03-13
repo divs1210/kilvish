@@ -46,7 +46,7 @@ public class Sprite extends JLabel{
 		return this.name;
 	}
 	
-	public void setCurrentIndex(int i){
+	public void setCurrentImageIndex(int i){
 		this.currImg = i;
 	}
 	

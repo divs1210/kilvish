@@ -36,4 +36,8 @@ public class Animation extends ArrayList<SpriteImage> {
 		this.add(new SpriteImage(img, frames));
 	}
 	
+	public boolean equals(String name){
+		return name.equals(this.getName());
+	}
+	
 }

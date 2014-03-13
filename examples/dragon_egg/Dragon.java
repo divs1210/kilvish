@@ -15,16 +15,16 @@ class Dragon extends Sprite {
 	public Dragon(){
 		super("dragon");
 		
-		this.addImage(img_1, 1);
-		this.addImage(img_2, 1);
-		this.addImage(img_3, 1);
-		this.addImage(img_4, 1);
+		this.addImage(img_1, 10);
+		this.addImage(img_2, 10);
+		this.addImage(img_3, 10);
+		this.addImage(img_4, 10);
 	}
 	
 	@Override
 	public void update(){
 		if(this.getX()>this.getParent().getWidth())
 			this.setLocation(-this.getWidth(), this.getY());
-		this.moveBy(5, 0);
+		this.moveBy(2, 0);
 	}
 }
