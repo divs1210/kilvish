@@ -20,13 +20,7 @@ public class GameWindow extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setIconImage(MediaLoader.getBufferedImage("media/engine/ic.lp"));
-		this.pack();
 		this.setVisible(true);
-	}
-	
-	@Override
-	public Dimension getPreferredSize(){
-		return this.getContentPane().getSize();
 	}
 
 }

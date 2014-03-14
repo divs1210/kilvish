@@ -13,28 +13,27 @@ public class Wagon extends Actor {
                            img_2=getImageIcon("media/dragon_egg/wagon/2.PNG"),
                            img_3=getImageIcon("media/dragon_egg/wagon/3.PNG");
 	
-	Animation[] anims = new Animation[3];
-	
 	int dir = 0;
 	
 	public Wagon(){
 		super("wagon");
 		
-		anims[0] = new Animation("idle");
-		anims[0].add(img_1, 1); 
-		this.addAnimation(anims[0]);
+		Animation temp;
+		temp = new Animation("idle");
+		temp.add(img_1, 1); 
+		this.addAnimation(temp);
 		
-		anims[1] = new Animation("move_left");
-		anims[1].add(img_2, 6);
-		anims[1].add(img_3, 6);
-		anims[1].add(img_1, 6);
-		this.addAnimation(anims[1]);
+		temp = new Animation("move_left");
+		temp.add(img_2, 6);
+		temp.add(img_3, 6);
+		temp.add(img_1, 6);
+		this.addAnimation(temp);
 		
-		anims[2] = new Animation("move_right");
-		anims[2].add(img_3, 6);
-		anims[2].add(img_2, 6);
-		anims[2].add(img_1, 6);
-		this.addAnimation(anims[2]);
+		temp = new Animation("move_right");
+		temp.add(img_3, 6);
+		temp.add(img_2, 6);
+		temp.add(img_1, 6);
+		this.addAnimation(temp);
 
 		this.setCurrentAnimation("idle");
 	}

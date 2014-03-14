@@ -8,6 +8,7 @@ package com.kilvish.view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -49,8 +50,8 @@ public class GamePane extends JPanel {
 							if(s.imgChanged){
 								s.setIcon(s.getCurrentImage());
 								s.setSize(s.getCurrentImage().getIconWidth(), s.getCurrentImage().getIconHeight());
-								s.repaint();
 							}
+							s.repaint();
 							s.update();
 							s.advanceOneFrame();
 						}
@@ -60,7 +61,7 @@ public class GamePane extends JPanel {
 				}
 				t_end = new Date().getTime();
 				try {
-					//System.out.println(t_end-t_beg);
+					//System.out.println(delay-(t_end-t_beg));
 					sleep(delay-(t_end-t_beg));
 				} catch (Exception e) {}
 			}
@@ -157,6 +158,11 @@ public class GamePane extends JPanel {
 	
 	public int getFPS(){
 		return (int)(1000/delay);
+	}
+	
+	@Override
+	public Dimension getPreferredSize(){
+		return this.getSize();
 	}
 	
 	class KA extends KeyAdapter{

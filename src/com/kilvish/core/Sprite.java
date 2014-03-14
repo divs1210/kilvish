@@ -6,6 +6,7 @@
 
 package com.kilvish.core;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -86,6 +87,57 @@ public class Sprite extends JLabel{
 		}
 	}
 	
-	public void update(){
+	public void placeAbove(Sprite that, int d){
+		this.setLocation(this.getX(), that.getY()-this.getHeight()-d);
 	}
+	
+	public void placeBelow(Sprite that, int d){
+		this.setLocation(this.getX(), that.getY()+that.getHeight()+d);
+	}
+	
+	public void placeLeftOf(Sprite that, int d){
+		this.setLocation(that.getX()-this.getWidth()-d, this.getY());
+	}
+	
+	public void placeRightOf(Sprite that, int d){
+		this.setLocation(that.getX()+that.getWidth()+d, this.getY());
+	}
+	
+	public boolean isAbove(Sprite that){
+		return (this.getY()+this.getHeight() < that.getY()+that.getHeight()/2);
+	}
+	
+	public boolean isBelow(Sprite that){
+		return that.isAbove(this);
+	}
+	
+	public boolean isLeftTo(Sprite that){
+		return (this.getX()+this.getWidth() < that.getX()+that.getWidth()/2);
+	}
+	
+	public boolean isRightTo(Sprite that){
+		return that.isLeftTo(this);
+	}
+	
+	public boolean has(Sprite that){
+		Point top_left     = that.getLocation(),
+		      top_right    = new Point(that.getX()+that.getWidth(), that.getY()),
+		      bottom_left  = new Point(that.getX(), that.getY()+that.getHeight()),
+		      bottom_right = new Point(that.getX()+that.getWidth(), that.getY()+that.getHeight());
+		
+		return this.has(top_left)
+			|| this.has(top_right)
+			|| this.has(bottom_left)
+			|| this.has(bottom_right);
+	}
+
+	private boolean has(Point p) {
+		int x = p.x,
+			y = p.y;
+		
+		return (x>=getX() && x<=getX()+getWidth() && y>=getY() && y<=getY()+getHeight());
+	}
+	
+
+	public void update(){}
 }

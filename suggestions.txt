@@ -1,3 +1,8 @@
+Me:
+-> start working on physics (start with collisions)
+-> see if i need to implement an ad-hoc version of box2d. Would be interesting.
+
+Sir:
 usability heuristics and usability testing.
 testing scenarios.
 
