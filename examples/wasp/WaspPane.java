@@ -24,6 +24,7 @@ public class WaspPane extends GamePane{
 			ImageIcon img = new ImageIcon( Scalr.crop(wasp, 100*i, 0, 100, 100) );
 			buzz.addImage(img, 10);
 		}
+		buzz.setLocation(250, 150);
 		this.add(buzz);
 	}
 	

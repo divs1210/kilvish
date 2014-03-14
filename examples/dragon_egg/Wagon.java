@@ -25,15 +25,15 @@ public class Wagon extends Actor {
 		this.addAnimation(anims[0]);
 		
 		anims[1] = new Animation("move_left");
-		anims[1].add(img_2, 5);
-		anims[1].add(img_3, 5);
-		anims[1].add(img_1, 5);
+		anims[1].add(img_2, 6);
+		anims[1].add(img_3, 6);
+		anims[1].add(img_1, 6);
 		this.addAnimation(anims[1]);
 		
 		anims[2] = new Animation("move_right");
-		anims[2].add(img_3, 5);
-		anims[2].add(img_2, 5);
-		anims[2].add(img_1, 5);
+		anims[2].add(img_3, 6);
+		anims[2].add(img_2, 6);
+		anims[2].add(img_1, 6);
 		this.addAnimation(anims[2]);
 
 		this.setCurrentAnimation("idle");
@@ -41,6 +41,6 @@ public class Wagon extends Actor {
 	
 	@Override
 	public void update(){
-		this.moveBy(2*dir, 0);
+		this.moveBy(3*dir, 0);
 	}
 }

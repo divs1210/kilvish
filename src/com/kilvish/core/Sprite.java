@@ -20,9 +20,11 @@ public class Sprite extends JLabel{
 	private int currImg,
 	            framesPassed;
 	
-	String name;
+	private String name;
 	
 	ArrayList<SpriteImage> simgs;
+	
+	public boolean imgChanged = false;
 	
 	public Sprite(String name){
 		currImg=0;
@@ -30,6 +32,8 @@ public class Sprite extends JLabel{
 		
 		this.name = name;
 		this.simgs = new ArrayList();
+		
+		this.setVisible(false);
 	}
 	
 	public void addImage(ImageIcon img, int frames){
@@ -38,8 +42,10 @@ public class Sprite extends JLabel{
 	
 	public void addSpriteImage(SpriteImage simg){
 		simgs.add(simg);
-		if(currImg==0)
+		if(currImg==0){
 			this.setIcon(simg.img);
+			this.setSize(simg.img.getIconWidth(), simg.img.getIconHeight());
+		}
 	}
 	
 	public String getName(){
@@ -73,8 +79,10 @@ public class Sprite extends JLabel{
 		if(framesPassed>=si.frames){
 			framesPassed=0;
 			currImg=(currImg+1)%simgs.size();
+			imgChanged = true;
 		}else{
 			framesPassed++;
+			imgChanged = false;
 		}
 	}
 	

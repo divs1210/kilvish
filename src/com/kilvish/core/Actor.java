@@ -10,6 +10,8 @@ package com.kilvish.core;
 
 import java.util.ArrayList;
 
+import com.kilvish.util.Logger;
+
 /**
  * Class to represent complex characters with multiple animations.
  * 
@@ -62,16 +64,15 @@ public class Actor extends Sprite {
 	}
 	
 	public void setCurrentAnimation(String name){
-		if(!name.equals(this.getName())){
-			Animation a;
-			for(int i=0;i<anims.size();i++){
-				a = anims.get(i);
-				if(a.equals(name)){
-					this.setCurrentAnimationIndex(i);
-					break;
-				}
+		Animation a;
+		for(int i=0;i<anims.size();i++){
+			a = anims.get(i);
+			if(a.equals(name)){
+				this.setCurrentAnimationIndex(i);
+				return;
 			}
 		}
+		Logger.log(new Exception("No such animation: "+name+" in "+this.getName()+"!"));
 	}
 	
 	/**

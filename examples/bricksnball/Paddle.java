@@ -14,7 +14,6 @@ public class Paddle extends Sprite {
 	
 	public Paddle(){
 		super("paddle");
-		
 		this.addImage(img, 9999);
 	}
 	

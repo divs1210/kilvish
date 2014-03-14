@@ -14,10 +14,11 @@ public class DragonGame extends GamePane {
 		super(600, 400);
 		
 		d = new Dragon();
+		d.setLocation(-d.getWidth(), 0);
 		this.add(d);
 		
 		w = new Wagon();
-		w.setLocation(0, this.getHeight()-70);
+		w.setLocation((this.getWidth()-w.getWidth())/2, this.getHeight()-w.getHeight()-30);
 		this.add(w);
 	}
 	

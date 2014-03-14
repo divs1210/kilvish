@@ -35,16 +35,22 @@ public class GamePane extends JPanel {
 	
 	private Thread gameThread = new Thread(){
 		public void run(){
-			long t_prev=new Date().getTime(), t_curr;
+			for(Component c:GamePane.this.getComponents())
+				if(c instanceof Sprite)
+					c.setVisible(true);
+			
+			long t_beg=new Date().getTime(), t_end;
 			while(true){
-				t_curr = new Date().getTime();
+				t_beg = new Date().getTime();
 				if(!paused){
 					for(Component c:GamePane.this.getComponents()){
 						if(c instanceof Sprite){
 							Sprite s = (Sprite)c;
-							s.setIcon(s.getCurrentImage());
-							s.setSize(s.getCurrentImage().getIconWidth(), s.getCurrentImage().getIconHeight());
-							s.repaint();
+							if(s.imgChanged){
+								s.setIcon(s.getCurrentImage());
+								s.setSize(s.getCurrentImage().getIconWidth(), s.getCurrentImage().getIconHeight());
+								s.repaint();
+							}
 							s.update();
 							s.advanceOneFrame();
 						}
@@ -52,10 +58,11 @@ public class GamePane extends JPanel {
 					repaint();
 					update();
 				}
+				t_end = new Date().getTime();
 				try {
-					sleep(delay-(t_curr-t_prev));
+					//System.out.println(t_end-t_beg);
+					sleep(delay-(t_end-t_beg));
 				} catch (Exception e) {}
-				t_prev = t_curr;
 			}
 		}
 	};
