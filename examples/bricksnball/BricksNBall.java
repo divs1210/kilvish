@@ -14,7 +14,7 @@ public class BricksNBall extends GamePane {
 	
 	public BricksNBall(){
 		super(600, 400);
-		this.setBackground(new Color(200, 191, 231));
+		this.setBackground(new Color(220, 220, 220));
 		
 		int[][] map={{1,1,1,1,1,1,1,1,1,1},
 				     {1,0,0,0,0,0,0,0,0,1},
@@ -112,8 +112,8 @@ public class BricksNBall extends GamePane {
 	}
 	
 	void initBall(){
-		ball.xvel = 5;
-		ball.yvel = 5;
+		ball.xvel = 10;
+		ball.yvel = 10;
 		ball.xdir = 1;
 		ball.ydir = 1;
 		ball.setLocation((this.getWidth()-ball.getWidth())/2, paddle.getY()-100);

@@ -17,15 +17,15 @@ public class WaspPane extends GamePane{
 	WaspPane(){
 		super(600, 400);
 		
-		BufferedImage wasp = getBufferedImage("media/wasp/wasp.png");
+		BufferedImage waspImg = getBufferedImage("media/wasp/wasp.png");
 		
-		Sprite buzz = new Sprite("wasp");
+		Sprite wasp = new Sprite("wasp");
 		for(int i=0; i<8; i++){
-			ImageIcon img = new ImageIcon( Scalr.crop(wasp, 100*i, 0, 100, 100) );
-			buzz.addImage(img, 5);
+			ImageIcon img = new ImageIcon( Scalr.crop(waspImg, 100*i, 0, 100, 100) );
+			wasp.addImage(img, 1);
 		}
-		buzz.setLocation(250, 150);
-		this.add(buzz);
+		wasp.setLocation(250, 150);
+		this.add(wasp);
 	}
 	
 	public static void main(String[] args){

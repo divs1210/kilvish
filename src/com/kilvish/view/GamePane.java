@@ -50,8 +50,8 @@ public class GamePane extends JPanel {
 							if(s.imgChanged){
 								s.setIcon(s.getCurrentImage());
 								s.setSize(s.getCurrentImage().getIconWidth(), s.getCurrentImage().getIconHeight());
+								s.repaint();
 							}
-							s.repaint();
 							s.update();
 							s.advanceOneFrame();
 						}
@@ -61,7 +61,7 @@ public class GamePane extends JPanel {
 				}
 				t_end = new Date().getTime();
 				try {
-					//System.out.println(delay-(t_end-t_beg));
+					//System.out.println((t_end-t_beg));
 					sleep(delay-(t_end-t_beg));
 				} catch (Exception e) {}
 			}
@@ -82,7 +82,7 @@ public class GamePane extends JPanel {
 		setFocusable(true);
 		addKeyListener(new KA());
 		
-		setFPS(60);
+		setFPS(30);
 	}
 	
 	private void showSplashScreen() {
