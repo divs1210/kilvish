@@ -19,7 +19,7 @@ public class Paddle extends Sprite {
 	
 	@Override
 	public void update(){
-		this.moveBy(15*dir, 0);
+		this.moveBy(10*dir, 0);
 	}
 	
 }
