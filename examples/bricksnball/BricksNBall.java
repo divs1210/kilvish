@@ -1,6 +1,5 @@
 package bricksnball;
 
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
@@ -26,7 +25,6 @@ public class BricksNBall extends GamePane {
 	
 	public BricksNBall(){
 		super(600, 400);
-		//this.setBackground(new Color(220, 220, 220));
 		
 		int[][] map={{1,1,1,1,1,1,1,1,1,1},
 				     {1,0,0,0,0,0,0,0,0,1},
@@ -50,7 +48,7 @@ public class BricksNBall extends GamePane {
 		
 		wallR = new Sprite("right_wall");
 		wallR.addImage(wallImg, 9999);
-		wallR.setLocation(getWidth()-wallR.getWidth()-6,0);
+		wallR.setLocation(getWidth()-wallR.getWidth(),0);
 		this.add(wallR);
 		
 		roof = new Sprite("roof");
@@ -59,7 +57,7 @@ public class BricksNBall extends GamePane {
 		this.add(roof);
 		
 		paddle = new Paddle();
-		paddle.setLocation((this.getWidth()-paddle.getWidth())/2, this.getHeight()-paddle.getHeight()-30);
+		paddle.setLocation((this.getWidth()-paddle.getWidth())/2, this.getHeight()-paddle.getHeight());
 		this.add(paddle);
 		
 		ball = new Ball();
@@ -131,8 +129,9 @@ public class BricksNBall extends GamePane {
 					this.add(b1);
 					
 					bricks[i] = b1;
-				}else
+				}else{
 					bricks[i] = null;
+				}
 				b.setVisible(false);
 				this.remove(b);
 			}

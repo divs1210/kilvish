@@ -64,7 +64,9 @@ public class GamePane extends JPanel {
 					//if((t_end-t_beg)!=0)
 						//System.out.println((t_end-t_beg));
 					sleep(delay-(t_end-t_beg));
-				} catch (Exception e) {}
+				} catch (Exception e) {
+					Logger.log(e);
+				}
 			}
 		}
 	};

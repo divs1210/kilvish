@@ -14,12 +14,14 @@ public class GameWindow extends JFrame {
 	
 	public GameWindow(GamePane gp){
 		this.setContentPane(gp);
+		this.setLayout(null);
 		this.setTitle("Kilvish Game Engine");
 		this.setSize(gp.getSize());
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setIconImage(MediaLoader.getBufferedImage("media/engine/ic.lp"));
+		this.pack();
 		this.setVisible(true);
 	}
 

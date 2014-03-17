@@ -4,6 +4,10 @@
 	<classpathentry kind="src" path="examples"/>
 	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/imgscalr-lib-4.2/imgscalr-lib-4.2.jar"/>
+	<classpathentry kind="lib" path="lib/imgscalr-lib-4.2/imgscalr-lib-4.2.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/KILVISH/lib/imgscalr-lib-4.2/imgscalr-lib-4.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
