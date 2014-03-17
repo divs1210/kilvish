@@ -18,7 +18,7 @@ public class DragonGame extends GamePane {
 		this.add(d);
 		
 		w = new Wagon();
-		w.setLocation((this.getWidth()-w.getWidth())/2, this.getHeight()-w.getHeight()-30);
+		w.setLocation((this.getWidth()-w.getWidth())/2, this.getHeight()-w.getHeight());
 		this.add(w);
 	}
 	
