@@ -123,12 +123,14 @@ public class Sprite extends JLabel{
 		Point top_left     = that.getLocation(),
 		      top_right    = new Point(that.getX()+that.getWidth(), that.getY()),
 		      bottom_left  = new Point(that.getX(), that.getY()+that.getHeight()),
-		      bottom_right = new Point(that.getX()+that.getWidth(), that.getY()+that.getHeight());
+		      bottom_right = new Point(that.getX()+that.getWidth(), that.getY()+that.getHeight()),
+		      center       = new Point(that.getX()+that.getWidth()/2, that.getY()+that.getHeight()/2);
 		
 		return this.has(top_left)
 			|| this.has(top_right)
 			|| this.has(bottom_left)
-			|| this.has(bottom_right);
+			|| this.has(bottom_right)
+			|| this.has(center);
 	}
 
 	private boolean has(Point p) {

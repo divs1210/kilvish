@@ -3,14 +3,26 @@ package bricksnball;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
+import javax.swing.ImageIcon;
+
+import com.kilvish.core.Sprite;
+import com.kilvish.util.MediaLoader;
 import com.kilvish.view.GamePane;
 import com.kilvish.view.GameWindow;
 
 public class BricksNBall extends GamePane {
 	
 	Brick[] bricks=new Brick[50];
+	
 	Paddle paddle;
 	Ball ball;
+	
+	Sprite wallL,
+		   wallR,
+	       roof;
+	
+	static final ImageIcon wallImg = MediaLoader.getImageIcon("media/bricksnball/walls/wall.png"),
+			               roofImg = MediaLoader.getImageIcon("media/bricksnball/walls/roof.png");
 	
 	public BricksNBall(){
 		super(600, 400);
@@ -30,6 +42,21 @@ public class BricksNBall extends GamePane {
 				this.add(bricks[i]);
 			}
 		}
+		
+		wallL = new Sprite("left_wall");
+		wallL.addImage(wallImg, 9999);
+		wallL.setLocation(0,0);
+		this.add(wallL);
+		
+		wallR = new Sprite("right_wall");
+		wallR.addImage(wallImg, 9999);
+		wallR.setLocation(getWidth()-wallR.getWidth()-6,0);
+		this.add(wallR);
+		
+		roof = new Sprite("roof");
+		roof.addImage(roofImg, 9999);
+		roof.setLocation(0,0);
+		this.add(roof);
 		
 		paddle = new Paddle();
 		paddle.setLocation((this.getWidth()-paddle.getWidth())/2, this.getHeight()-paddle.getHeight()-30);
@@ -52,7 +79,20 @@ public class BricksNBall extends GamePane {
 		
 		if(paddle.has(ball)){
 			ball.placeAbove(paddle, 1);
-			ball.ydir *= -1;
+			ball.ydir = -1;
+		}else if(roof.has(ball)){
+			ball.placeBelow(roof, 1);
+			ball.ydir = 1;
+		}else if(ball.getY()>getHeight()){
+			initBall();
+		}
+		
+		if(wallL.has(ball)){
+			ball.placeRightOf(wallL, 1);
+			ball.xdir = 1;
+		}else if(wallR.has(ball)){
+			ball.placeLeftOf(wallR, 1);
+			ball.xdir = -1;
 		}
 		
 		boolean broken;
@@ -100,14 +140,6 @@ public class BricksNBall extends GamePane {
 				b.setVisible(false);
 				this.remove(b);
 			}
-		}
-		
-		if((ball.getX()<=0 && ball.xdir==-1) || (ball.getX()+ball.getWidth()>=getWidth() && ball.xdir==1))
-			ball.xdir *= -1;
-		if(ball.getY()<=0)
-			ball.ydir = 1;
-		else if(ball.getY()>getHeight()){
-			ball.setLocation((this.getWidth()-ball.getWidth())/2, paddle.getY()-100);
 		}
 	}
 	
