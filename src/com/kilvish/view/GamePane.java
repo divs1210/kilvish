@@ -61,7 +61,8 @@ public class GamePane extends JPanel {
 				}
 				t_end = new Date().getTime();
 				try {
-					//System.out.println((t_end-t_beg));
+					//if((t_end-t_beg)!=0)
+						//System.out.println((t_end-t_beg));
 					sleep(delay-(t_end-t_beg));
 				} catch (Exception e) {}
 			}

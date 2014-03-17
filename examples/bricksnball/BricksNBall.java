@@ -26,7 +26,7 @@ public class BricksNBall extends GamePane {
 	
 	public BricksNBall(){
 		super(600, 400);
-		this.setBackground(new Color(220, 220, 220));
+		//this.setBackground(new Color(220, 220, 220));
 		
 		int[][] map={{1,1,1,1,1,1,1,1,1,1},
 				     {1,0,0,0,0,0,0,0,0,1},
@@ -63,9 +63,8 @@ public class BricksNBall extends GamePane {
 		this.add(paddle);
 		
 		ball = new Ball();
-		this.add(ball);
-
 		initBall();
+		this.add(ball);
 	}
 
 	@Override
@@ -105,25 +104,22 @@ public class BricksNBall extends GamePane {
 			
 			broken = false;
 			type = b.type;
-			if(b.has(ball)){
-				broken = true;
-				if(ball.ydir==-1 && ball.isBelow(b)){
-					ball.ydir = 1;
-					ball.placeBelow(b, 1);
-				}else if(ball.ydir==1 && ball.isAbove(b)){
-					ball.ydir = -1;
-					ball.placeAbove(b, 1);
-				}
-			}
 			
 			if(b.has(ball)){
 				broken = true;
+				
 				if(ball.xdir==-1 && ball.isRightTo(b)){
-					ball.xdir = 1;
 					ball.placeRightOf(b, 1);
+					ball.xdir = 1;
 				}else if(ball.xdir==1 && ball.isLeftTo(b)){
-					ball.xdir = -1;
 					ball.placeLeftOf(b, 1);
+					ball.xdir = -1;
+				}else if(ball.ydir==-1 && ball.isBelow(b)){
+					ball.placeBelow(b, 1);
+					ball.ydir = 1;
+				}else if(ball.ydir==1 && ball.isAbove(b)){
+					ball.placeAbove(b, 1);
+					ball.ydir = -1;
 				}
 			}
 			

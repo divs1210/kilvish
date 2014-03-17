@@ -16,9 +16,9 @@ class Dragon extends Sprite {
 		super("dragon");
 		
 		this.addImage(img_1, 5);
-		this.addImage(img_2, 7);
-		this.addImage(img_3, 7);
-		this.addImage(img_4, 5);
+		this.addImage(img_2, 3);
+		this.addImage(img_3, 3);
+		this.addImage(img_4, 3);
 	}
 	
 	@Override
