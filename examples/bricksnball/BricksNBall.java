@@ -75,6 +75,15 @@ public class BricksNBall extends GamePane {
 		else
 			paddle.dir = 0;
 		
+		/*  Auto-Pilot
+		if(ball.getX()<paddle.getX())
+			paddle.dir = -1;
+		else if(ball.getX()>paddle.getX()+paddle.getWidth())
+			paddle.dir = 1;
+		else
+			paddle.dir = 0;
+		//*/
+		
 		if(paddle.has(ball)){
 			ball.placeAbove(paddle, 1);
 			ball.ydir = -1;
