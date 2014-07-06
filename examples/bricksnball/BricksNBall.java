@@ -1,8 +1,11 @@
 package bricksnball;
 
+import java.applet.AudioClip;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import com.kilvish.core.Sprite;
 import com.kilvish.util.MediaLoader;
@@ -20,11 +23,17 @@ public class BricksNBall extends GamePane {
 		   wallR,
 	       roof;
 	
-	static final ImageIcon wallImg = MediaLoader.getImageIcon("media/bricksnball/walls/wall.png"),
-			               roofImg = MediaLoader.getImageIcon("media/bricksnball/walls/roof.png");
+	static final ImageIcon wallImg_1 = MediaLoader.getImageIcon("media/bricksnball/walls/wall.png"),
+						   wallImg_2 = MediaLoader.getImageIcon("media/bricksnball/walls/wall_2.png"),
+			               roofImg   = MediaLoader.getImageIcon("media/bricksnball/walls/roof.png");
+	
+	static final AudioClip hit   = MediaLoader.getSound("media/bricksnball/sounds/hit.wav"),
+						   blast = MediaLoader.getSound("media/bricksnball/sounds/blast.wav"),
+						   music = MediaLoader.getSound("media/bricksnball/sounds/music.wav");
 	
 	public BricksNBall(){
 		super(600, 400);
+		this.setBackground(new Color(215, 212, 210));
 		this.setFPS(80);
 		
 		int[][] map={{1,1,1,1,1,1,1,1,1,1},
@@ -33,27 +42,33 @@ public class BricksNBall extends GamePane {
 				     {1,0,0,0,0,0,0,0,0,1},
 				     {1,1,1,1,1,1,1,1,1,1}};
 		
-		int i=0;
+		int i=0,
+			startX=(this.getWidth()-400)/2,
+			startY= this.getHeight()/5;
 		for(int r=0; r<5; r++){
 			for(int c=0; c<10; c++,i++){
-				bricks[i] = new Brick(map[r][c]);
-				bricks[i].setLocation(100+40*c, 50+20*r);
-				this.add(bricks[i]);
+				if(map[r][c]>=0){
+					bricks[i] = new Brick(map[r][c]);
+					bricks[i].setLocation(startX+40*c, startY+20*r);
+					this.add(bricks[i]);
+				}
 			}
 		}
 		
 		wallL = new Sprite("left_wall");
-		wallL.addImage(wallImg, 9999);
+		wallL.addImage(wallImg_1, 50);
+		wallL.addImage(wallImg_2, 50);
 		wallL.setLocation(0,0);
 		this.add(wallL);
 		
 		wallR = new Sprite("right_wall");
-		wallR.addImage(wallImg, 9999);
+		wallR.addImage(wallImg_1, 50);
+		wallR.addImage(wallImg_2, 50);
 		wallR.setLocation(getWidth()-wallR.getWidth(),0);
 		this.add(wallR);
 		
 		roof = new Sprite("roof");
-		roof.addImage(roofImg, 9999);
+		roof.addImage(roofImg);
 		roof.setLocation(0,0);
 		this.add(roof);
 		
@@ -76,11 +91,12 @@ public class BricksNBall extends GamePane {
 			paddle.dir = 0;
 		
 		/*  Auto-Pilot
-		if(ball.getX()<paddle.getX())
-			paddle.dir = -1;
-		else if(ball.getX()>paddle.getX()+paddle.getWidth())
-			paddle.dir = 1;
-		else
+		if(ball.ydir==1){
+			if(ball.getX()<paddle.getX())
+				paddle.dir = -1;
+			else if(ball.getX()>paddle.getX()+paddle.getWidth())
+				paddle.dir = 1;
+		}else
 			paddle.dir = 0;
 		//*/
 		
@@ -103,12 +119,13 @@ public class BricksNBall extends GamePane {
 		}
 		
 		boolean broken;
-		int type;
+		int type, remaining=0;
 		Brick b;
 		for(int i=0; i<bricks.length; i++){
 			b = bricks[i];
 			if(b==null)
 				continue;
+			remaining++;
 			
 			broken = false;
 			type = b.type;
@@ -139,21 +156,31 @@ public class BricksNBall extends GamePane {
 					this.add(b1);
 					
 					bricks[i] = b1;
+					hit.play();
 				}else{
 					bricks[i] = null;
+					blast.play();
 				}
 				b.setVisible(false);
 				this.remove(b);
+				break;
 			}
+		}
+		
+		if(remaining==0){
+			this.pause(true);
+			JOptionPane.showMessageDialog(this, "This was a demo of Kilvish Game Engine.");
 		}
 	}
 	
 	void initBall(){
-		ball.xvel = 5;
-		ball.yvel = 5;
+		ball.xvel = 4;
+		ball.yvel = 4;
 		ball.xdir = 1;
 		ball.ydir = 1;
-		ball.setLocation((this.getWidth()-ball.getWidth())/2, paddle.getY()-100);
+		ball.setLocation((this.getWidth()-ball.getWidth())/2, (this.getHeight()*7)/10);
+		
+		music.loop();
 	}
 	
 	public static void main(String[] args) {

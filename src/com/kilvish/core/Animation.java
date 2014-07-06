@@ -21,6 +21,10 @@ public class Animation extends ArrayList<SpriteImage> {
 	
 	String name;
 	
+	/**
+	 * Creates a new named Animation.
+	 * This name can be used to test equality using the equals() method
+	 */
 	public Animation(String name){
 		this.name = name;
 	}
@@ -32,10 +36,17 @@ public class Animation extends ArrayList<SpriteImage> {
 		return name;
 	}
 	
+	/**
+	 * Adds an image to this animation that is displayed
+	 * for the specified number of frames consecutively.
+	 */
 	public void add(ImageIcon img, int frames){
 		this.add(new SpriteImage(img, frames));
 	}
 	
+	/**
+	 * Test if this animation has the specified name.
+	 */
 	public boolean equals(String name){
 		return name.equals(this.getName());
 	}

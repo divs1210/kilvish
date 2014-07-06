@@ -57,12 +57,18 @@ public class Actor extends Sprite {
 			i=0;
 	}
 	
+	/**
+	 * Gets index of the animation being played currently
+	 */
 	public int getCurrentAnimationIndex(){
 		if(curr>=anims.size())
 			curr=0;
 		return curr;
 	}
 	
+	/**
+	 * Sets the current animation being played by this Actor
+	 */
 	public void setCurrentAnimation(String name){
 		Animation a;
 		for(int i=0;i<anims.size();i++){

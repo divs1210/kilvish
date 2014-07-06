@@ -7,11 +7,11 @@
 package com.kilvish.util;
 
 import java.io.BufferedWriter;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Date;
 
 /**
  * Provides an error-logging facility.
@@ -21,27 +21,81 @@ import java.net.URISyntaxException;
 public class Logger {
 	
 	/**
-	 * Writes the error details into the util/log.txt file
+	 * Writes the error details into the kilvish.log file,
+	 * and prints the stack trace if not suppressed.
 	 */
-	public static void log(Exception e){
-		e.printStackTrace();
+	public static void log(final Exception e, boolean suppress){
+		if(!suppress)
+			e.printStackTrace();
 		
-		BufferedWriter bw = null;
-		try {
-			bw = new BufferedWriter(new FileWriter(".log", true));
-			
-			bw.write(e+"\n");
-			bw.write("\n");
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		} finally{
-			if(bw!=null)
+		//write concurrently to file.
+		new Thread(){
+			public void run(){
+				BufferedWriter bw = null;
 				try {
-					bw.close();
-				} catch (IOException e1) {
+					bw = new BufferedWriter(new FileWriter("kilvish.log", true));
+					
+					bw.write(new Date()+": "+e+"\n");
+					bw.write("\n");
+				} catch (Exception e1) {
 					e1.printStackTrace();
+				} finally{
+					if(bw!=null)
+						try {
+							bw.close();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
 				}
-		}
+			}
+		}.start();
+	}
+	
+	/**
+	 * Writes the error details into the kilvish.log file,
+	 * and prints the stack trace.
+	 */
+	public static void log(final Exception e){
+		log(e, false);
+	}
+	
+	/**
+	 * Writes the error details into the kilvish.log file,
+	 * and prints the stack trace if not suppressed.
+	 */
+	public static void log(final String s, boolean suppress){
+		if(!suppress)
+			System.out.println(s);
+		
+		//write concurrently to file.
+		new Thread(){
+			public void run(){
+				BufferedWriter bw = null;
+				try {
+					bw = new BufferedWriter(new FileWriter("kilvish.log", true));
+					
+					bw.write(new Date()+": "+s+"\n");
+					bw.write("\n");
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				} finally{
+					if(bw!=null)
+						try {
+							bw.close();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+				}
+			}
+		}.start();
+	}
+	
+	/**
+	 * Writes the error details into the kilvish.log file,
+	 * and prints the stack trace.
+	 */
+	public static void log(final String s){
+		log(s, false);
 	}
 
 }

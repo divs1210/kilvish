@@ -25,7 +25,9 @@ import com.kilvish.util.Logger;
 import com.kilvish.util.MediaLoader;
 
 /**
- * A container to which Sprites can be added to make a game.
+ * A container to which Sprites can be added to make a game. 
+ * This is the de-facto game container.
+ * Extend to write your own game.
  * 
  * @author Divyansh Prakash
  */
@@ -61,12 +63,9 @@ public class GamePane extends JPanel {
 				}
 				t_end = new Date().getTime();
 				try {
-					//if((t_end-t_beg)!=0)
-						//System.out.println((t_end-t_beg));
-					sleep(delay-(t_end-t_beg));
-				} catch (Exception e) {
-					Logger.log(e);
-				}
+					long t=delay-(t_end-t_beg);
+					sleep(t<0?0:t);
+				} catch(Exception e){}
 			}
 		}
 	};
@@ -89,6 +88,9 @@ public class GamePane extends JPanel {
 	}
 	
 	private void showSplashScreen() {
+		Color bg = this.getBackground();
+		this.setBackground(Color.WHITE);
+		
 	    int scr_w = getWidth(),
 			scr_h = getHeight();
 		
@@ -108,22 +110,33 @@ public class GamePane extends JPanel {
 		} catch (Exception e) {}
 		splash.setVisible(false);
 		remove(splash);
+		this.setBackground(bg);
 		
 		repaint();
 	}
 
-	public void pause(boolean state){
-		paused=state;
+	/**
+	 * Pause/Unpause this game.
+	 */
+	public void pause(boolean paused){
+		this.paused=paused;
 	}
 	
+	/**
+	 * Start this game.
+	 * Use pause(false) to unpause a game.
+	 */
 	public void play(){
 		if(!gameThread.isAlive()){
-			paused=false;
+			this.paused=false;
 			showSplashScreen();
 			gameThread.start();
 		}else Logger.log(new Exception("Trying to start a started game!"));
 	}
 	
+	/**
+	 * Tests if this game is paused.
+	 */
 	public boolean isPaused(){
 		return paused;
 	}
@@ -155,10 +168,18 @@ public class GamePane extends JPanel {
 	public void update(){
 	}
 	
-	public void setFPS(int frames){
-		delay = 1000/frames;
+	/**
+	 * Will make the engine update the game fps times every second.
+	 * Not exact.
+	 * FPS=Frames per second
+	 */
+	public void setFPS(int fps){
+		delay = 1000/fps;
 	}
 	
+	/**
+	 * Returns the frame-rate of the game.
+	 */
 	public int getFPS(){
 		return (int)(1000/delay);
 	}
