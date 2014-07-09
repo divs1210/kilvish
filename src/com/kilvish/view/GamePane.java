@@ -51,7 +51,8 @@ public class GamePane extends JPanel {
 							Sprite s = (Sprite)c;
 							if(s.imgChanged){
 								s.setIcon(s.getCurrentImage());
-								s.setSize(s.getCurrentImage().getIconWidth(), s.getCurrentImage().getIconHeight());
+								s.setSize(s.getCurrentImage().getIconWidth(), 
+										  s.getCurrentImage().getIconHeight());
 								s.repaint();
 							}
 							s.update();
