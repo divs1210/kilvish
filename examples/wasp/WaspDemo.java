@@ -12,9 +12,9 @@ import com.kilvish.core.Sprite;
 import com.kilvish.view.GamePane;
 import com.kilvish.view.GameWindow;
 
-public class WaspPane extends GamePane{
+public class WaspDemo extends GamePane{
 
-	WaspPane(){
+	WaspDemo(){
 		super(600, 400);
 		
 		BufferedImage waspImg = getBufferedImage("media/wasp/wasp.png");
@@ -29,9 +29,9 @@ public class WaspPane extends GamePane{
 	}
 	
 	public static void main(String[] args){
-		WaspPane wp = new WaspPane();
-		new GameWindow(wp);
-		wp.play();
+		WaspDemo wd = new WaspDemo();
+		new GameWindow(wd);
+		wd.play();
 	}
 	
 }

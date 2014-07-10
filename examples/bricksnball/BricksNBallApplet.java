@@ -12,4 +12,9 @@ public class BricksNBallApplet extends GameApplet {
 		this.getGamePane().play();
 	}
 	
+	public void stop(){
+		this.getGamePane().pause(true);
+		this.remove(this.getContentPane());
+	}
+	
 }
