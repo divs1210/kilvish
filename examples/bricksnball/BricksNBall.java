@@ -73,7 +73,8 @@ public class BricksNBall extends GamePane {
 		this.add(roof);
 		
 		paddle = new Paddle();
-		paddle.setLocation((this.getWidth()-paddle.getWidth())/2, this.getHeight()-paddle.getHeight());
+		paddle.setLocation((this.getWidth()-paddle.getWidth())/2, 
+				           this.getHeight()-paddle.getHeight());
 		this.add(paddle);
 		
 		ball = new Ball();
@@ -92,10 +93,12 @@ public class BricksNBall extends GamePane {
 		
 		/*  Auto-Pilot
 		if(ball.ydir==1){
-			if(ball.getX()<paddle.getX())
+			if(ball.isLeftTo(paddle))
 				paddle.dir = -1;
-			else if(ball.getX()>paddle.getX()+paddle.getWidth())
+			else if(ball.isRightTo(paddle))
 				paddle.dir = 1;
+			else
+				paddle.dir = 0;
 		}else
 			paddle.dir = 0;
 		//*/
@@ -178,8 +181,8 @@ public class BricksNBall extends GamePane {
 		ball.yvel = 4;
 		ball.xdir = 1;
 		ball.ydir = 1;
-		ball.setLocation((this.getWidth()-ball.getWidth())/2, (this.getHeight()*7)/10);
-		
+		ball.setLocation((this.getWidth()-ball.getWidth())/2, 
+				         (this.getHeight()*7)/10);
 		music.loop();
 	}
 	

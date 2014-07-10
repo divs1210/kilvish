@@ -39,13 +39,12 @@ public class MediaLoader {
 	 * Returns an AudioClip object instance
 	 * from the given .wav/.au file.
 	 */
-	public static AudioClip getSound(URL url) {
+	public static AudioClip getSound(final URL url) {
 		AudioClip c = null;
     	
     	try {
-			c = Applet.newAudioClip(url);
+    		c = Applet.newAudioClip(url);
 		} catch (Exception e) {
-			e.printStackTrace();
 			Logger.log(e);
 		}
     	
@@ -86,7 +85,6 @@ public class MediaLoader {
     	try {
 			img = ImageIO.read(url);
 		} catch (Exception e) {
-			e.printStackTrace();
 			Logger.log(e);
 		}
     	

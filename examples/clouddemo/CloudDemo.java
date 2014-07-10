@@ -3,7 +3,6 @@ package clouddemo;
 import javax.swing.ImageIcon;
 
 import com.kilvish.core.Sprite;
-import com.kilvish.util.DragAdapter;
 import com.kilvish.util.MediaLoader;
 import com.kilvish.view.GamePane;
 import com.kilvish.view.GameWindow;
@@ -21,7 +20,6 @@ public class CloudDemo extends GamePane {
 		
 		cloud = new Sprite("cloud");
 		cloud.addImage(cloudImg1);
-		
 		this.add(cloud);
 	}
 	
