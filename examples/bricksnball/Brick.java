@@ -30,15 +30,15 @@ public class Brick extends Sprite {
 		
 		this.type = type;
 		if(type==YELLOW){
-			this.addImage(img_Y0, 30);
-			this.addImage(img_Y1, 10);
-			this.addImage(img_Y2, 10);
-			this.addImage(img_Y3, 5);
+			this.addImage(img_Y0, 60);
+			this.addImage(img_Y1, 20);
+			this.addImage(img_Y2, 20);
+			this.addImage(img_Y3, 10);
 		}else{
-			this.addImage(img_R0, 100);
-			this.addImage(img_R1, 15);
-			this.addImage(img_R2, 10);
-			this.addImage(img_R3, 5);
+			this.addImage(img_R0, 200);
+			this.addImage(img_R1, 25);
+			this.addImage(img_R2, 20);
+			this.addImage(img_R3, 10);
 		}
 	}
 
