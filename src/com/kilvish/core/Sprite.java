@@ -6,6 +6,7 @@
 
 package com.kilvish.core;
 
+import java.awt.Component;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -197,7 +198,7 @@ public class Sprite extends JLabel{
 	}
 	
 	/**
-	 * Tests if the given sprite is colliding with the current sprite.
+	 * Tests if the given sprite is colliding with this sprite.
 	 */
 	public boolean has(Sprite that){
 		Point top_left     = that.getLocation(),
@@ -211,6 +212,24 @@ public class Sprite extends JLabel{
 			|| this.has(bottom_left)
 			|| this.has(bottom_right)
 			|| this.has(center);
+	}
+	
+	/**
+	 * Tests if a sprite with the given name is colliding with this sprite.
+	 */
+	public boolean has(String spriteName){
+		boolean does=false;
+		Sprite s;
+		for(Component c: this.getParent().getComponents()){
+			if(c instanceof Sprite && c!=this){
+				s = (Sprite)c;
+				if(s.getName().equals(spriteName) && this.has(s)){
+					does = true;
+					break;
+				}
+			}
+		}
+		return does;
 	}
 
 	/**
