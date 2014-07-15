@@ -16,8 +16,8 @@ public class Ball extends Sprite {
 	int xdir,
 	    ydir;
 	
-	int xvel,
-		yvel;
+	int xvel=3,
+		yvel=3;
 	
 	public Ball(){
 		super("ball");

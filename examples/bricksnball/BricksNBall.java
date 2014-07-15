@@ -3,6 +3,7 @@ package bricksnball;
 import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -13,8 +14,6 @@ import com.kilvish.view.GamePane;
 import com.kilvish.view.GameWindow;
 
 public class BricksNBall extends GamePane {
-	
-	Brick[] bricks=new Brick[50];
 	
 	Paddle paddle;
 	Ball ball;
@@ -34,7 +33,7 @@ public class BricksNBall extends GamePane {
 	public BricksNBall(){
 		super(600, 400);
 		this.setBackground(new Color(215, 212, 210));
-		this.setFPS(150);
+		this.setFPS(100);
 		
 		int[][] map={{1,1,1,1,1,1,1,1,1,1},
 				     {1,0,0,0,0,0,0,0,0,1},
@@ -42,15 +41,15 @@ public class BricksNBall extends GamePane {
 				     {1,0,0,0,0,0,0,0,0,1},
 				     {1,1,1,1,1,1,1,1,1,1}};
 		
-		int i=0,
-			startX=(this.getWidth()-400)/2,
+		Brick b;
+		int startX=(this.getWidth()-400)/2,
 			startY= this.getHeight()/5;
 		for(int r=0; r<5; r++){
-			for(int c=0; c<10; c++,i++){
+			for(int c=0; c<10; c++){
 				if(map[r][c]>=0){
-					bricks[i] = new Brick(map[r][c]);
-					bricks[i].setLocation(startX+40*c, startY+20*r);
-					this.add(bricks[i]);
+					b = new Brick(map[r][c]);
+					b.setLocation(startX+40*c, startY+20*r);
+					this.add(b);
 				}
 			}
 		}
@@ -104,81 +103,53 @@ public class BricksNBall extends GamePane {
 		//*/
 		
 		if(paddle.has(ball)){
-			ball.placeAbove(paddle, 1);
+			ball.placeAbove(paddle, ball.yvel);
 			ball.ydir = -1;
 		}else if(roof.has(ball)){
-			ball.placeBelow(roof, 1);
+			ball.placeBelow(roof, ball.yvel);
 			ball.ydir = 1;
 		}else if(ball.getY()>getHeight()){
 			initBall();
 		}
 		
 		if(wallL.has(ball)){
-			ball.placeRightOf(wallL, 1);
+			ball.placeRightOf(wallL, ball.xvel);
 			ball.xdir = 1;
 		}else if(wallR.has(ball)){
-			ball.placeLeftOf(wallR, 1);
+			ball.placeLeftOf(wallR, ball.xvel);
 			ball.xdir = -1;
 		}
 		
-		boolean broken;
-		int type, remaining=0;
-		Brick b;
-		for(int i=0; i<bricks.length; i++){
-			b = bricks[i];
-			if(b==null)
-				continue;
-			remaining++;
+		Brick b = (Brick) ball.collidingWithSome("brick");
+		if(b!=null){
+			b.kill();
 			
-			broken = false;
-			type = b.type;
-			
-			if(b.has(ball)){
-				broken = true;
-				
-				if(ball.xdir==-1 && ball.isRightTo(b)){
-					ball.placeRightOf(b, 1);
-					ball.xdir = 1;
-				}else if(ball.xdir==1 && ball.isLeftTo(b)){
-					ball.placeLeftOf(b, 1);
-					ball.xdir = -1;
-				}else if(ball.ydir==-1 && ball.isBelow(b)){
-					ball.placeBelow(b, 1);
-					ball.ydir = 1;
-				}else if(ball.ydir==1 && ball.isAbove(b)){
-					ball.placeAbove(b, 1);
-					ball.ydir = -1;
-				}
+			if(ball.xdir==-1 && ball.isRightTo(b)){
+				ball.placeRightOf(b, ball.xvel);
+				ball.xdir = 1;
+			}else if(ball.xdir==1 && ball.isLeftTo(b)){
+				ball.placeLeftOf(b, ball.xvel);
+				ball.xdir = -1;
+			}else if(ball.ydir==-1 && ball.isBelow(b)){
+				ball.placeBelow(b, ball.yvel);
+				ball.ydir = 1;
+			}else if(ball.ydir==1 && ball.isAbove(b)){
+				ball.placeAbove(b, ball.yvel);
+				ball.ydir = -1;
 			}
 			
-			if(broken){
-				if(type==Brick.RED){
-					Brick b1 = new Brick(Brick.YELLOW);
-					b1.setLocation(b.getLocation());
-					b1.setVisible(true);
-					this.add(b1);
-					
-					bricks[i] = b1;
-					hit.play();
-				}else{
-					bricks[i] = null;
-					blast.play();
-				}
-				b.setVisible(false);
-				this.remove(b);
-				break;
-			}
-		}
-		
-		if(remaining==0){
-			this.pause(true);
-			JOptionPane.showMessageDialog(this, "This was a demo of Kilvish Game Engine.");
+			if(b.type==Brick.RED){
+				Brick b1 = new Brick(Brick.YELLOW);
+				b1.setLocation(b.getLocation());
+				b1.setVisible(true);
+				this.add(b1);
+				hit.play();
+			}else
+				blast.play();
 		}
 	}
 	
 	void initBall(){
-		ball.xvel = 2;
-		ball.yvel = 2;
 		ball.xdir = 1;
 		ball.ydir = 1;
 		ball.setLocation((this.getWidth()-ball.getWidth())/2, 

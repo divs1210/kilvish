@@ -198,6 +198,19 @@ public class Sprite extends JLabel{
 	}
 	
 	/**
+	 * Tests if the given point lies inside this sprite
+	 */
+	private boolean has(Point p) {
+		int x = p.x,
+			y = p.y;
+		
+		return x>=getX() 
+			&& x<=getX()+getWidth() 
+			&& y>=getY() 
+			&& y<=getY()+getHeight();
+	}
+	
+	/**
 	 * Tests if the given sprite is colliding with this sprite.
 	 */
 	public boolean has(Sprite that){
@@ -215,31 +228,32 @@ public class Sprite extends JLabel{
 	}
 	
 	/**
-	 * Tests if a sprite with the given name is colliding with this sprite.
+	 * Returns a sprite with the given name if it is colliding with this sprite,
+	 * or if this sprite is colliding with it, and null otherwise.
 	 */
-	public boolean has(String spriteName){
+	public Sprite collidingWithSome(String spriteName){
 		boolean does=false;
-		Sprite s;
+		Sprite s=null;
 		for(Component c: this.getParent().getComponents()){
 			if(c instanceof Sprite && c!=this){
 				s = (Sprite)c;
-				if(s.getName().equals(spriteName) && this.has(s)){
+				if(s.getName().equals(spriteName) && (this.has(s) || s.has(this))){
 					does = true;
 					break;
 				}
 			}
 		}
-		return does;
+		if(!does)
+			s=null;
+		return s;
 	}
-
+	
 	/**
-	 * Tests if the given point lies inside this sprite
+	 * Makes the Sprite invisible, and removes it from the GamePane.
 	 */
-	private boolean has(Point p) {
-		int x = p.x,
-			y = p.y;
-		
-		return (x>=getX() && x<=getX()+getWidth() && y>=getY() && y<=getY()+getHeight());
+	public void kill(){
+		this.setVisible(false);
+		this.getParent().remove(this);
 	}
 	
 	/**
