@@ -18,6 +18,7 @@ public class DeadGod extends GamePane {
 	
 	public DeadGod() {
 		super(600, 400);
+		this.setFPS(60);
 		this.setBackground(new Color(55, 150, 115));
 		
 		map = new Map(this);
@@ -34,15 +35,18 @@ public class DeadGod extends GamePane {
 		else if(isKeyDown(KeyEvent.VK_DOWN))
 			d.moveBy(0,  1);		
 		
-		if(d.getX()>400){
-			map.loadNext();
-			this.shiftScreenBy(-350, 0);
+		if(d.getX()>550){
+			this.shiftScreenBy(-600, 0);
+			map.loadNext(true);
 		}
 	}
 
 	public static void main(String[] args) {
 		DeadGod dg = new DeadGod();
-		new GameWindow(dg);
+		
+		GameWindow game = new GameWindow(dg);
+		game.setTitle("DeadGod - Alhazred's Dream");
+		
 		dg.play();
 	}
 

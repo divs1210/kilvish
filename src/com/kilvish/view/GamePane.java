@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
@@ -85,6 +86,22 @@ public class GamePane extends JPanel {
 		addKeyListener(new KA());
 		
 		setFPS(30);
+	}
+	
+	/**
+	 * Returns all added sprites which have the given name.
+	 */
+	public ArrayList<Sprite> getSpritesCalled(String name){
+		ArrayList<Sprite> sprites = new ArrayList<Sprite>();
+		Sprite s;
+		for(Component c: this.getComponents()){
+			if(c instanceof Sprite){
+				s = (Sprite)c;
+				if(s.getName().equals(name))
+					sprites.add(s);
+			}
+		}
+		return sprites;
 	}
 	
 	private void showSplashScreen() {

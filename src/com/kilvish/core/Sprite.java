@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import com.kilvish.util.Logger;
+import com.kilvish.view.GamePane;
+
 /**
  * Simple class to represent an image or a simple animation consisting of a group of images.
  * 
@@ -39,6 +42,19 @@ public class Sprite extends JLabel{
 		this.simgs = new ArrayList();
 		
 		this.setVisible(false);
+	}
+	
+	/**
+	 * Gets the GamePane to which this Sprite is attached.
+	 */
+	public GamePane getGamePane(){
+		GamePane gp = null;
+		try{
+			gp = (GamePane)this.getParent();
+		}catch(Exception e){
+			Logger.log("This sprite has not been added to a GamePane yet.");
+		}
+		return gp;
 	}
 	
 	/**
@@ -232,19 +248,13 @@ public class Sprite extends JLabel{
 	 * or if this sprite is colliding with it, and null otherwise.
 	 */
 	public Sprite collidingWithSome(String spriteName){
-		boolean does=false;
 		Sprite s=null;
-		for(Component c: this.getParent().getComponents()){
-			if(c instanceof Sprite && c!=this){
-				s = (Sprite)c;
-				if(s.getName().equals(spriteName) && (this.has(s) || s.has(this))){
-					does = true;
-					break;
-				}
+		for(Sprite temp: this.getGamePane().getSpritesCalled(spriteName)){
+			if(this.has(temp) || temp.has(this)){
+				s = temp;
+				break;
 			}
 		}
-		if(!does)
-			s=null;
 		return s;
 	}
 	
