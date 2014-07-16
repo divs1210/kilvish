@@ -33,7 +33,17 @@ public class DeadGod extends GamePane {
 		if(isKeyDown(KeyEvent.VK_UP))
 			d.moveBy(0, -1);
 		else if(isKeyDown(KeyEvent.VK_DOWN))
-			d.moveBy(0,  1);		
+			d.moveBy(0,  1);
+		
+		Stone s = (Stone) d.collidingWithSome("stone");
+		if(s!=null){
+			if(d.isLeftTo(s))
+				d.placeLeftOf(s, 1);
+			else if(d.isAbove(s))
+				d.placeAbove(s, 1);
+			else if(d.isBelow(s))
+				d.placeBelow(s, 1);
+		}
 		
 		if(d.getX()>550){
 			this.shiftScreenBy(-600, 0);
