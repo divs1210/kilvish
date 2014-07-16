@@ -18,7 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.kilvish.core.Actor;
 import com.kilvish.core.Sprite;
 import com.kilvish.media.ImageControl;
 import com.kilvish.util.Logger;

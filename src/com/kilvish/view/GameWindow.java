@@ -30,7 +30,7 @@ public class GameWindow extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setIconImage(MediaLoader.getImageIcon("media/engine/ic.lp").getImage());
-		this.pack();
+		this.pack();		
 		this.setVisible(true);
 	}
 
