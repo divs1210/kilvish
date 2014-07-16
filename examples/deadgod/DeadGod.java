@@ -3,11 +3,6 @@ package deadgod;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
-import javax.swing.ImageIcon;
-
-import com.kilvish.core.Sprite;
-import com.kilvish.util.DragAdapter;
-import com.kilvish.util.MediaLoader;
 import com.kilvish.view.GamePane;
 import com.kilvish.view.GameWindow;
 
@@ -35,8 +30,8 @@ public class DeadGod extends GamePane {
 		else if(isKeyDown(KeyEvent.VK_DOWN))
 			d.moveBy(0,  1);
 		
-		Stone s = (Stone) d.collidingWithSome("stone");
-		if(s!=null){
+		Stone s;
+		while((s=(Stone) d.collidingWithSome("stone")) != null){
 			if(d.isLeftTo(s))
 				d.placeLeftOf(s, 1);
 			else if(d.isAbove(s))
