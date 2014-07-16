@@ -120,8 +120,8 @@ public class BricksNBall extends GamePane {
 			ball.xdir = -1;
 		}
 		
-		Brick b = (Brick) ball.collidingWithSome("brick");
-		if(b!=null){
+		Brick b;
+		while((b = (Brick) ball.collidingWithSome("brick"))!=null){
 			b.kill();
 			
 			if(ball.xdir==-1 && ball.isRightTo(b)){

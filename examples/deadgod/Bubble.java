@@ -17,7 +17,7 @@ public class Bubble extends Sprite {
 	public void update(){
 		this.moveBy(0, -1);
 		
-		if(this.getY()<0)
+		if(this.getY()<0 || this.collidingWithSome("stone")!=null)
 			this.kill();
 	}
 	

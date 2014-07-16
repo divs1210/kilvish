@@ -186,7 +186,8 @@ public class Sprite extends JLabel{
 	 * Does not check the horizontal axis.
 	 */
 	public boolean isAbove(Sprite that){
-		return (this.getY()+this.getHeight() < that.getY()+that.getHeight()/2);
+		//return (this.getY()+this.getHeight() < that.getY()+that.getHeight()/2);
+		return this.isAbove(that, that.getHeight()/2);
 	}
 	
 	/**
@@ -202,7 +203,8 @@ public class Sprite extends JLabel{
 	 * Does not check the vertical axis.
 	 */
 	public boolean isLeftTo(Sprite that){
-		return (this.getX()+this.getWidth() < that.getX()+that.getWidth()/2);
+		//return (this.getX()+this.getWidth() < that.getX()+that.getWidth()/2);
+		return this.isLeftTo(that, that.getWidth()/2);
 	}
 	
 	/**
@@ -211,6 +213,38 @@ public class Sprite extends JLabel{
 	 */
 	public boolean isRightTo(Sprite that){
 		return that.isLeftTo(this);
+	}
+	
+	/**
+	 * Tests if this sprite is above the given sprite.
+	 * Does not check the horizontal axis.
+	 */
+	public boolean isAbove(Sprite that, int pix){
+		return (this.getY()+this.getHeight() < that.getY()+pix);
+	}
+	
+	/**
+	 * Tests if this sprite is below the given sprite.
+	 * Does not check the horizontal axis.
+	 */
+	public boolean isBelow(Sprite that, int pix){
+		return that.isAbove(this, pix);
+	}
+	
+	/**
+	 * Tests if this sprite is to the left of the given sprite.
+	 * Does not check the vertical axis.
+	 */
+	public boolean isLeftTo(Sprite that, int pix){
+		return (this.getX()+this.getWidth() < that.getX()+pix);
+	}
+	
+	/**
+	 * Tests if this sprite is to the right of the given sprite.
+	 * Does not check the vertical axis.
+	 */
+	public boolean isRightTo(Sprite that, int pix){
+		return that.isLeftTo(this, pix);
 	}
 	
 	/**

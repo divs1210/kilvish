@@ -22,7 +22,7 @@ public class Diver extends Sprite {
 		r = new Random();
 		
 		this.addImage(new ImageIcon(Scalr.crop(sheet, 303, 130, 50, 20)), 5);
-		this.addImage(new ImageIcon(Scalr.crop(sheet, 360, 130, 50, 20)), 5);
+		this.addImage(new ImageIcon(Scalr.crop(sheet, 360, 130, 50, 20)), 10);
 		this.addImage(new ImageIcon(Scalr.crop(sheet, 418, 130, 50, 20)), 5);
 	}
 	

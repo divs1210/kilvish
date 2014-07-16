@@ -32,7 +32,7 @@ public class DeadGod extends GamePane {
 		
 		Stone s;
 		while((s=(Stone) d.collidingWithSome("stone")) != null){
-			if(d.isLeftTo(s))
+			if(d.isLeftTo(s, 5))
 				d.placeLeftOf(s, 1);
 			else if(d.isAbove(s))
 				d.placeAbove(s, 1);
