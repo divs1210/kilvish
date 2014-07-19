@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="private" author="true" classpath="lib/imgscalr-lib-4.2/imgscalr-lib-4.2.jar" destdir="doc" doctitle="Documentation - Kilvish Game Engine" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="com.kilvish.media,com.kilvish.view,com.kilvish.util,com.kilvish.core" source="1.7" sourcepath="src:examples:res" splitindex="true" use="true" version="true">
+            <link href="http://download.oracle.com/javase/7/docs/api/"/>
+        </javadoc>
+    </target>
+</project>

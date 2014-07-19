@@ -21,16 +21,16 @@ public class Diver extends Sprite {
 		
 		r = new Random();
 		
-		this.addImage(new ImageIcon(Scalr.crop(sheet, 303, 130, 50, 20)), 5);
-		this.addImage(new ImageIcon(Scalr.crop(sheet, 360, 130, 50, 20)), 10);
-		this.addImage(new ImageIcon(Scalr.crop(sheet, 418, 130, 50, 20)), 5);
+		this.addImage(new ImageIcon(Scalr.crop(sheet, 303, 130, 50, 20)), 10);
+		this.addImage(new ImageIcon(Scalr.crop(sheet, 360, 130, 50, 20)), 20);
+		this.addImage(new ImageIcon(Scalr.crop(sheet, 418, 130, 50, 20)), 10);
 	}
 	
 	public void update(){
 		this.moveBy(1, 0);
 		
-		if(r.nextInt(100)>97){
-			Bubble b= new Bubble();
+		if(r.nextInt(100)<2){
+			Bubble b = new Bubble();
 			b.placeRightOf(this, 0);
 			b.placeAbove(this, 0);
 			b.setVisible(true);

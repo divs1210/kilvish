@@ -2,4 +2,4 @@ Me:
 -> start working on physics (start with collisions)
 -> see if I need to implement an ad-hoc version of box2d. Would be interesting.
 -> JLayeredPane can work out of the box if add(comp, Integer) is used.
--> 
+-> IMPORTANT: show splashscreen when constructor is called. remove when play() is called.

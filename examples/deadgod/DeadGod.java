@@ -13,7 +13,7 @@ public class DeadGod extends GamePane {
 	
 	public DeadGod() {
 		super(600, 400);
-		this.setFPS(60);
+		this.setFPS(80);
 		this.setBackground(new Color(55, 150, 115));
 		
 		map = new Map(this);
@@ -38,6 +38,21 @@ public class DeadGod extends GamePane {
 				d.placeAbove(s, 1);
 			else if(d.isBelow(s))
 				d.placeBelow(s, 1);
+		}
+		
+		if(d.r.nextInt(500)<5){
+			int choice=d.r.nextInt(100);
+			if(choice<10){
+				Jellyfish j = new Jellyfish();
+				j.setLocation(d.r.nextInt(580), 400);
+				j.setVisible(true);
+				this.add(j);
+			}else if(choice<15){
+				FloatingEye j = new FloatingEye();
+				j.setLocation(d.getLocation());
+				j.setVisible(true);
+				this.add(j);
+			}
 		}
 		
 		if(d.getX()>550){
