@@ -36,6 +36,9 @@ public class Diver extends Sprite {
 			b.setVisible(true);
 			this.getParent().add(b);
 		}
+		
+		if(r.nextBoolean())
+			this.moveBy(0, 1);
 	}
 	
 }
