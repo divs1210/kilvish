@@ -32,7 +32,7 @@ import com.kilvish.util.MediaLoader;
  * @author Divyansh Prakash
  */
 public class GamePane extends JPanel {
-	private static boolean[] keys = new boolean[300];
+	private static final boolean[] keys = new boolean[300];
 	private boolean paused=true;
 	private long delay=0;
 	
