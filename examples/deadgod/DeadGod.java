@@ -10,11 +10,16 @@ public class DeadGod extends GamePane {
 
 	Diver d;
 	Map map;
+	Sonar sonar;
 	
 	public DeadGod() {
 		super(600, 400);
 		this.setFPS(80);
 		this.setBackground(new Color(55, 150, 115));
+		
+		sonar = new Sonar();
+		sonar.setLocation(600-64, 400-64);
+		this.add(sonar);
 		
 		map = new Map(this);
 		map.loadNext();
@@ -58,6 +63,7 @@ public class DeadGod extends GamePane {
 		if(d.getX()>550){
 			this.shiftScreenBy(-600, 0);
 			map.loadNext(true);
+			sonar.setLocation(600-64, 400-64);
 		}
 	}
 
