@@ -186,7 +186,6 @@ public class Sprite extends JLabel{
 	 * Does not check the horizontal axis.
 	 */
 	public boolean isAbove(Sprite that){
-		//return (this.getY()+this.getHeight() < that.getY()+that.getHeight()/2);
 		return this.isAbove(that, that.getHeight()/2);
 	}
 	
@@ -203,7 +202,6 @@ public class Sprite extends JLabel{
 	 * Does not check the vertical axis.
 	 */
 	public boolean isLeftTo(Sprite that){
-		//return (this.getX()+this.getWidth() < that.getX()+that.getWidth()/2);
 		return this.isLeftTo(that, that.getWidth()/2);
 	}
 	
@@ -255,9 +253,9 @@ public class Sprite extends JLabel{
 			y = p.y;
 		
 		return x>=getX() 
-			&& x<=getX()+getWidth() 
-			&& y>=getY() 
-			&& y<=getY()+getHeight();
+			 && x<=getX()+getWidth() 
+			 && y>=getY() 
+			 && y<=getY()+getHeight();
 	}
 	
 	/**
@@ -271,10 +269,10 @@ public class Sprite extends JLabel{
 		      center       = new Point(that.getX()+that.getWidth()/2, that.getY()+that.getHeight()/2);
 		
 		return this.has(top_left)
-			|| this.has(top_right)
-			|| this.has(bottom_left)
-			|| this.has(bottom_right)
-			|| this.has(center);
+		 	 || this.has(top_right)
+			 || this.has(bottom_left)
+			 || this.has(bottom_right)
+			 || this.has(center);
 	}
 	
 	/**

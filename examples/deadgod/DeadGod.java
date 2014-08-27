@@ -25,7 +25,7 @@ public class DeadGod extends GamePane {
 		map.loadNext();
 		
 		d = new Diver();
-		d.setLocation(0, 180);
+		d.setLocation(0, 160);
 		this.add(d);
 	}
 	
