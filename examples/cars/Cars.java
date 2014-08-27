@@ -11,11 +11,11 @@ public class Cars extends GamePane {
 	Map map;
 	
 	public Cars() {
-		super(600, 400);
+		super(800, 600);
 		this.setFPS(15);
 		
 		p = new Player();
-		p.setLocation(200, 260);
+		p.setLocation(300, 600-p.getHeight());
 		this.add(p);
 		
 		map = new Map(this);
@@ -39,7 +39,7 @@ public class Cars extends GamePane {
 			p.velX= 0;
 		
 		if(p.getY()<10){
-			this.shiftScreenBy(0, 400);
+			this.shiftScreenBy(0, 600);
 			map.loadNext(true);
 		}
 	}
