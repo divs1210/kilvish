@@ -24,7 +24,7 @@ public class Player extends Sprite {
 	
 	@Override
 	public void update(){
-		this.moveBy(velX, -velY/4);
+		this.moveBy(velX, -velY/6);
 	}
 	
 }

@@ -14,7 +14,7 @@ public class Cars extends GamePane {
 	
 	public Cars() {
 		super(800, 600);
-		this.setFPS(15);
+		this.setFPS(30);
 		
 		r = new Random();
 		
