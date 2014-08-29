@@ -7,19 +7,24 @@ import com.kilvish.util.MediaLoader;
 
 public class Player extends Sprite {
 
-	final static ImageIcon red_car = MediaLoader.getImageIcon("media/cars/red_car.png");
+	final static ImageIcon red_car = MediaLoader.getImageIcon("media/cars/red_car.png"),
+			                blue_car = MediaLoader.getImageIcon("media/cars/blue_car.png");
 	
 	int velX=0,
 		velY=0;
 	
-	Player(){
+	Player(int type){
 		super("player");
-		this.addImage(red_car);
+		
+		if(type==0)
+			this.addImage(red_car);
+		else
+			this.addImage(blue_car);
 	}
 	
 	@Override
 	public void update(){
-		this.moveBy(velX, -velY);
+		this.moveBy(velX, -velY/4);
 	}
 	
 }
