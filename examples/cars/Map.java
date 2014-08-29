@@ -1,7 +1,5 @@
 package cars;
 
-import java.util.Random;
-
 import com.kilvish.core.Sprite;
 import com.kilvish.view.GamePane;
 
@@ -35,11 +33,11 @@ public class Map {
 					  {1,1,1,0,0,1,1,1},
 					  {1,1,1,0,0,1,1,1}};
 	
+	Cars c;
 	int curr = 0;
-	GamePane gp;
 	
 	public Map(GamePane gp){
-		this.gp = gp;
+		this.c = (Cars)gp;
 	}
 	
 	public void loadNext(){
@@ -47,29 +45,28 @@ public class Map {
 	}
 	
 	public MapElement randomNaturalElement(){
-		Random r = ((Cars)gp).r;
-		return r.nextBoolean()?new Grass():
-				r.nextBoolean()?new Grass():
-				r.nextBoolean()?new  Tree():
-				r.nextBoolean()?new  Tree():
-								new  Rock();
+		return c.r.nextBoolean()?new Grass():
+				c.r.nextBoolean()?new Grass():
+				c.r.nextBoolean()?new  Tree():
+				c.r.nextBoolean()?new  Tree():
+								  new  Rock();
 	}
 	
 	public void loadNext(boolean visible){
-		Sprite s=null;
-		for(int c=0; c<8; c++){
-			switch(repr[curr][c]){
+		Sprite s;
+		for(int col=0; col<8; col++){
+			s = null;
+			
+			switch(repr[curr][col]){
 				case 0: s = new Road();  break;
 				case 1: s = randomNaturalElement(); break;
 				case 2: s = new Stone(); break;
 			}
 			
 			if(s!=null){
-				s.setLocation(c*100, -100);
+				s.setLocation(col*100, -100);
 				s.setVisible(visible);
-				gp.add(s);
-				
-				s = null;
+				c.add(s);
 			}
 		}
 		curr=(curr+1)%repr.length;

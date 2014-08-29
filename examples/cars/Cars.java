@@ -8,9 +8,11 @@ import com.kilvish.view.GameWindow;
 
 public class Cars extends GamePane {
 
-	Player p,c;
-	Map map;
 	Random r;
+	Player p,c;
+	
+	Map map;
+	int startAt=0;
 	
 	public Cars() {
 		super(800, 600);
@@ -26,16 +28,16 @@ public class Cars extends GamePane {
 		this.add(c);
 		
 		map = new Map(this);
-		for(int i=0;i<6;i++){
+		for(int i=0;i<map.repr.length;i++){
 			map.loadNext();
 			this.shiftScreenBy(0, 100);
 		}
+		this.shiftScreenBy(0, -100*(map.repr.length-6));
 		
 		p.setLocation(320, 600-p.getHeight());
 		c.setLocation(420, 600-c.getHeight());
 	}
 	
-	///*
 	public void update(){
 		if(GamePane.isKeyDown(KeyEvent.VK_UP))
 			p.velY+=1;
@@ -55,14 +57,9 @@ public class Cars extends GamePane {
 		if(r.nextBoolean())
 			c.velY++;
 		
-		if(p.getY()<-p.getHeight()){
-			for(int i=0;i<8;i++){
-				map.loadNext(true);
-				this.shiftScreenBy(0, 100);
-			}
-		}
+		startAt = 600-p.getHeight()-p.getY();
+		this.shiftScreenBy(0, startAt);
 	}
-	//*/
 
 	public static void main(String[] args) {
 		Cars c = new Cars();
