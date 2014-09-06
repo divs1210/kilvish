@@ -9,7 +9,7 @@ public class Road extends MapElement {
 	final static ImageIcon img = MediaLoader.getImageIcon("media/cars/road.jpg");
 	
 	public Road() {
-		super("stone");
+		super("road");
 		this.addImage(img);
 	}
 	
